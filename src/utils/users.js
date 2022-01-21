@@ -38,3 +38,20 @@ const removeUser = (id) => {
     return users.splice(index, 1)[0];
   }
 };
+
+//* Get user
+const getUser = (id) => {
+  return users.find((user) => user.id === id);
+};
+
+//* Getting users from room
+const getUsersInRoom = (room) => {
+  return users.filter((user) => user.room === room);
+};
+
+module.exports = {
+  addUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
+};
