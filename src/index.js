@@ -18,7 +18,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const port = 3000;
+const port = process.env.PORT || 8080;
 
 const publicAccess = path.join(__dirname, "../public");
 
@@ -88,11 +88,11 @@ io.on("connection", (socket) => {
       io.to(user.room).emit(
         "newMessage",
         generateMessages(`${user.username} has left!`, "Admin")
-        );
-        io.to(user.room).emit("roomData", {
-            room: user.room,
-            users : getUsersInRoom(user.room)
-        })
+      );
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
     }
   });
 });
